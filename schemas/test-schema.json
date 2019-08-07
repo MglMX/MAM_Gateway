@@ -1,0 +1,12 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "http://mama-gateway.com/schemas/time-registration.healthcare.schema.json",
+	"title": "Time registration",
+	"description": "Time that a student has worked for a healthcare organization",
+	"type": "object",
+	"required" : ["firstName"],
+  "properties": {
+    "firstName": { "type": "string" },
+    "age": { "type": "number", "minimum": 3 }
+  }
+}

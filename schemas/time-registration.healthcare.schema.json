@@ -1,0 +1,57 @@
+{ 
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "http://mam-gateway.com/schemas/time-registration.healthcare.schema.json",
+    "title": "Time registration",
+    "description": "Time that a student has worked for a healthcare organization",
+    "type": "object",
+    "definitions": {
+        "caregiver" : {
+            "type":"object",
+            "description": "Person who provided care to the work item",
+            "properties": {
+                "firstName": {"type":"string"},
+                "lastName" : {"type": "string"}
+            },
+            "required":["firstName","lastName"]
+        }
+    },
+    "properties": {
+        "caregiver":{
+            "$ref" : "#/definitions/caregiver"
+        },
+        "work_item":{
+            "type":"string",
+            "description": "Patient or Location where the care was given"
+        },
+        "organization":{
+            "type":"string",
+            "description": "Name of the organization"
+        },
+        "start_time":{
+            "type":"string",
+            "description": "Date and time when the caregiver started giving care to the work item"
+        },
+        "end_time":{
+            "type":"string",
+            "description": "Date and time when the caregiver finished giving care to the work item"
+        },
+        "duration":{
+            "type":"number",
+            "description": "Time in minutes spent giving care"
+
+        },
+        "status":{
+            "type":"string",
+            "enum": ["APPROVED","DECLINED","PENDING"]
+        },
+        "notes":{
+            "type":"string",
+            "description": "Comments made by the manager who approved this timelog"
+        },
+        "encrypted":{
+            "description" : "Constant array of properties that need to be encrypted before inserting in a channel",
+            "const" : ["caregiver","work_item","organization"]
+        }
+    },
+    "required": ["caregiver","work_item","organization","start_time","end_time","duration","status"]
+ }
