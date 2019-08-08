@@ -19,6 +19,19 @@ The gateway allows the creation of users which can manage the channels that they
 ### API Reference
 The documentation to use the API can we found at [https://mglmx.github.io/MAM_Gateway/](https://mglmx.github.io/MAM_Gateway/).
 
+To use the API it's necessary to register an account using the function
+
+`POST` `/users/register`
+
+Authorization is needed to use the functions of the API. When an account is created it is possible to log in with the following method
+
+`POST` `/users/login`
+
+It will return a JSON Web Token that will identify the user in the next API calls. It is necessary to add the token as a header in the request.
+
+`{'Authorization' : 'Bearer <GIVEN_TOKEN>}`
+
+
 ### Wiki
 Wiki pages of the project can be found at
 
