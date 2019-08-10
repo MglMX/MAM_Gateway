@@ -254,83 +254,6 @@
   },
   {
     "type": "post",
-    "url": "/channels/:id/messages",
-    "title": "Post message in channel",
-    "name": "Post_message_in_channel",
-    "group": "Channels",
-    "version": "0.1.0",
-    "parameter": {
-      "fields": {
-        "Path params": [
-          {
-            "group": "Path params",
-            "type": "Number",
-            "optional": false,
-            "field": "id",
-            "description": "<p>ID of the channel where the message will be inserted</p>"
-          }
-        ],
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "seed",
-            "description": "<p>Seed of the channel</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Object",
-            "optional": false,
-            "field": "message",
-            "description": "<p>Message to be inserted in the tangle in JSON format</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": true,
-            "field": "secret",
-            "description": "<p>Password used to secure the channel</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Object",
-            "optional": true,
-            "field": "referece",
-            "description": "<p>Message of other channel that this message is referencing</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "Forbidden",
-            "description": "<p>You have to be the owner of the channel to post a message</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "BadSeedError",
-            "description": "<p>Provided seed is not channel's seed</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "BadSecretError",
-            "description": "<p>Provided secret is not channel's secret</p>"
-          }
-        ]
-      }
-    },
-    "filename": "routes/channels.js",
-    "groupTitle": "Channels"
-  },
-  {
-    "type": "post",
     "url": "/groups",
     "title": "Add a new group to the system",
     "name": "Create_groups",
@@ -468,6 +391,110 @@
             "optional": false,
             "field": "message",
             "description": "<p>Error message</p>"
+          }
+        ]
+      }
+    },
+    "filename": "routes/channels.js",
+    "groupTitle": "Messages"
+  },
+  {
+    "type": "post",
+    "url": "/channels/:id/messages",
+    "title": "Post message in channel",
+    "name": "Post_message_in_channel",
+    "group": "Messages",
+    "version": "0.1.0",
+    "parameter": {
+      "fields": {
+        "Path params": [
+          {
+            "group": "Path params",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID of the channel where the message will be inserted</p>"
+          }
+        ],
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "seed",
+            "description": "<p>Seed of the channel</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Message to be inserted in the tangle in JSON format</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "secret",
+            "description": "<p>Password used to secure the channel</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": true,
+            "field": "referece",
+            "description": "<p>Message of other channel that this message is referencing</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "referece.id",
+            "description": "<p>ID of other channel that this message is referencing</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "referece.root",
+            "description": "<p>Root of the message being referenced</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "root",
+            "description": "<p>Message root</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "Forbidden",
+            "description": "<p>You have to be the owner of the channel to post a message</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadSeedError",
+            "description": "<p>Provided seed is not channel's seed</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "BadSecretError",
+            "description": "<p>Provided secret is not channel's secret</p>"
           }
         ]
       }

@@ -403,7 +403,7 @@ router.get("/:id/messages/:root", function(req, res, next) {
  *
  * @api {post} /channels/:id/messages Post message in channel
  * @apiName Post message in channel
- * @apiGroup Channels
+ * @apiGroup Messages
  * @apiVersion  0.1.0
  *
  * @apiParam (Path params) {Number} id ID of the channel where the message will be inserted
@@ -412,7 +412,11 @@ router.get("/:id/messages/:root", function(req, res, next) {
  * @apiParam {Object} message Message to be inserted in the tangle in JSON format
  * @apiParam {String} [secret] Password used to secure the channel
  * @apiParam {Object} [referece] Message of other channel that this message is referencing
+ * @apiParam {Integer} referece.id ID of other channel that this message is referencing
+ * @apiParam {String} referece.root Root of the message being referenced
  * 
+ * @apiSuccess {String} root Message root
+ *  
  * @apiError Forbidden You have to be the owner of the channel to post a message
  * @apiError BadSeedError Provided seed is not channel's seed
  * @apiError BadSecretError Provided secret is not channel's secret
@@ -634,12 +638,7 @@ router.post("/:id/messages", function(req, res, next) {
               }
 
               return res.status(200).json({
-                data: {
-                  id,
-                  secret: secretToSend,
-                  root: messageRoot,
-                  owner: { name: owner.name, email: owner.email }
-                }
+                root: messageRoot
               });
             })
             .catch(error => {
