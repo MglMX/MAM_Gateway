@@ -412,7 +412,7 @@ router.get("/:id/messages/:root", function(req, res, next) {
  * @apiParam {Object} message Message to be inserted in the tangle in JSON format
  * @apiParam {String} [secret] Password used to secure the channel
  * @apiParam {Object} [referece] Message of other channel that this message is referencing
- * @apiParam {Integer} referece.id ID of other channel that this message is referencing
+ * @apiParam {Integer} referece.channel ID of other channel that this message is referencing
  * @apiParam {String} referece.root Root of the message being referenced
  * 
  * @apiSuccess {String} root Message root

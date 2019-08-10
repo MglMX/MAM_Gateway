@@ -449,7 +449,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "Integer",
             "optional": false,
-            "field": "referece.id",
+            "field": "referece.channel",
             "description": "<p>ID of other channel that this message is referencing</p>"
           },
           {
