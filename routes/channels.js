@@ -301,7 +301,7 @@ router.get("/:id/messages/:root", function(req, res, next) {
       return res.status(401).json({ error: "Root is mandatory" });
     }
 
-    const { Channel, Message } = models;
+    const { Channel, Message, EncryptedData } = models;
 
     Channel.findByPk(id, { include: ["owner", "permissionedUsers"] }).then(
       async channel => {
@@ -390,11 +390,13 @@ router.get("/:id/messages/:root", function(req, res, next) {
           } catch (e) {
             console.log(e);
           }
-
+          const encryptedFields = await EncryptedData.findAll({where:{messageId:messageDB.id},attributes:["field","hash","salt","algorithm"]})
+                    
           return res.status(200).json({
             data: {
               message: messageObject
-            }
+            },
+            encryptedFields
           });
         }
       }
