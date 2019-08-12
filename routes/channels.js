@@ -221,6 +221,9 @@ router.post("/", function(req, res, next) {
  * @apiSuccess (200) {Object[]} permissionedGroups List of user groups with permission to read a referenced message of this channel
  * @apiSuccess (200) {Integer} permissionedGroups.id ID of the group
  * @apiSuccess (200) {String} permissionedGroups.name Name of the group
+ * @apiSuccess (200) {Object[]} messages List of messages of this channel
+ * @apiSuccess (200) {String} messages.root Root of the message
+ * @apiSuccess (200) {String} messages.timestamp Timestamp of creation of the channel
  * 
  * @apiError InvalidChannelID The channel with specified ID does not exist
  */
@@ -235,7 +238,7 @@ router.get("/:id", function(req, res, next) {
 
     const id = req.params["id"];
 
-    const channel = await Channel.findByPk(id,{include:["owner"]});
+    const channel = await Channel.findByPk(id,{include:["owner","messages"]});
 
     if (!channel) {
       return res.status(400).json({ error: "Channel does not exist" });
@@ -254,11 +257,12 @@ router.get("/:id", function(req, res, next) {
     const permissionedGroups = await PermissionGroupChannel.findAll({where:{channel_id:channel.id},include:{model:Group, attributes:["id","name"]}})
     const permissionedGroupsInfo = permissionedGroups.map(perGroup => perGroup.Group)
 
-   
+   const messages = channel.messages
+   const messagesInfo = messages.map(message=>{return {root: message.root, timestamp: message.createdAt}})
     
     return res
       .status(200)
-      .json({id, root, schemaId: schemaId || undefined, secret:secretToSend,restricted, permissionedUsers: permissionedUsersInfo,permissionedGroups:permissionedGroupsInfo });
+      .json({id, root, schemaId: schemaId || undefined, secret:secretToSend,restricted, permissionedUsers: permissionedUsersInfo,permissionedGroups:permissionedGroupsInfo, messages: messagesInfo });
       
     } catch (e) {
       return res.status(400).json({error: e.message})

@@ -233,6 +233,27 @@ define({ "api": [
             "optional": false,
             "field": "permissionedGroups.name",
             "description": "<p>Name of the group</p>"
+          },
+          {
+            "group": "200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "messages",
+            "description": "<p>List of messages of this channel</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "messages.root",
+            "description": "<p>Root of the message</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "messages.timestamp",
+            "description": "<p>Timestamp of creation of the channel</p>"
           }
         ]
       }
