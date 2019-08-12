@@ -14,7 +14,10 @@ The gateway allows the creation of users which can manage the channels that they
 2. Install the dependencies with
 ` npm install`
 2. Change the parameters to connect to your database in the file `config/config.json`
-3. Run the server with `npm start`
+4. Create the database running the command `sequelize db:create` on the root directory
+5. Create tables of the database with the command `sequelize db:migrate`on the root directory
+6. Run the server with `npm start`
+
 
 ### API Reference
 The documentation to use the API can we found at [https://mglmx.github.io/MAM_Gateway/](https://mglmx.github.io/MAM_Gateway/).
