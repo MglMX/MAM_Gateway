@@ -33,7 +33,7 @@ It will return a JSON Web Token that will identify the user in the next API call
 
 
 ### Wiki
-Wiki pages of the project can be found at
+Wiki pages of the project can be found at [https://github.com/mglmx/mam_gateway/wiki](https://github.com/mglmx/mam_gateway/wiki)
 
 
 
