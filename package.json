@@ -22,7 +22,7 @@
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "express": "~4.16.1",
-    "express-jwt": "^5.3.1",
+    "express-jwt": "^6.0.0",
     "fs": "0.0.1-security",
     "iota-seed": "^1.0.5",
     "jsonwebtoken": "^8.5.1",
