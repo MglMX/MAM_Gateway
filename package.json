@@ -25,7 +25,7 @@
     "express-jwt": "^5.3.1",
     "fs": "0.0.1-security",
     "iota-seed": "^1.0.5",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
     "passport": "^0.4.0",
